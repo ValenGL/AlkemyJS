@@ -24,10 +24,10 @@ const exceptionType = {
       httpStatus: 404,
     },
   },
-  productos: {
+  presupuesto: {
     notFound: {
       code: 2000,
-      message: "Producto no se encuentra",
+      message: "Presupuesto no se encuentra",
       httpStatus: 404,
     },
     badRequest: {
