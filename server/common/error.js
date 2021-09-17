@@ -19,7 +19,7 @@ const errorHandler = (res, ex) =>{
         if(ex.httpStatus === 404){
             ex = new AppError(exceptionType.notFound)
         }else{
-            //unhandled excetion 
+            //unhandled excetion
             ex = new AppError(exceptionType.unhandledException,ex.message)
         }
     }
