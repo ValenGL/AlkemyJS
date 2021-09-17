@@ -1,13 +1,15 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const router = express.Router();
 const port = 3000;
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
-app.use("/",router);
+app.use(bodyParser.json());
 
-app.listen(port, ()=> {
+app.use("/", router);
+
+app.listen(port, () => {
   console.log(`App listen in port :${port}`);
-})
+});
 
-app.use("/user",require("./routes/userRoutes"));
+app.use("/user", require("./routes/userRoutes"));
