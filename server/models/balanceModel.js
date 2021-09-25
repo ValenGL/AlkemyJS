@@ -1,37 +1,57 @@
 const Sequelize = require('sequelize');
 const {sequelizeConnection} = require('../config/server/sequelizeConfig')
+const user_budget = require ('./userModel');
 
-const  BalanceModel = sequelizeConnection.define(
-    'balance',
+const  BudgetModel = sequelizeConnection.define(
+    'budget',
 {
-    id_balance:{
+    id_budget:{
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
     },
-    incomit: {
-        type: Sequelize.FLOAT,
-        allowNull: true,
-        fields: 'incomit'
+    budget_tipe:{
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      fields:'budget_tipe',
     },
-    egress: {
-        type: Sequelize.FLOAT,
-        allowNull: true,
-        fields: 'egress'
+    amount:{
+      type: Sequelize.FLOAT,
+      allowNull:false,
+      fields:'amount'
+
     },
-    id_user:{
+    user_budget:{
       type: Sequelize.INTEGER,
       reference: {
-        model: 'user',
+        model: user_budget,
         key: 'id_user'
       }
+    },
+    createdAt:{
+      type:Sequelize.DATE,
+      fields: 'createdAt'
+    },
+    updatedAt:{
+      type:Sequelize.DATE,
+      fields: 'updatedAt'
     }
 },
 {
-    tableName:'balance',
+    tableName:'budget',
     timestamps: true
 }
 )
 
-module.exports = BalanceModel
+module.exports = BudgetModel
+
+module.exports = Customers;
+
+BudgetModel.belongsTo(UserModel, {
+  foreignKey: 'user_budget', targetKey: 'id_user'
+});
+
+UserModel.hasMany(BudgetModel,{
+  as: 'bugdet'
+})
